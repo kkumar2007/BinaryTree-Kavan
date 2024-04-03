@@ -48,7 +48,25 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
-        return false;
+        return search(root, val);
+    }
+    private boolean search(BSTNode node, int val)
+    {
+        if (node == null) {
+            return false;
+        }
+        if (node.getVal() == val)
+        {
+            return true;
+        }
+        else if (val < node.getVal())
+        {
+            return search(node.getLeft(), val);
+        }
+        else
+        {
+            return search(node.getRight(), val);
+        }
     }
 
     /**
@@ -56,23 +74,50 @@ public class BST {
      */
     public ArrayList<BSTNode> getInorder() {
         // TODO: Complete inorder traversal
-        return null;
+        ArrayList<BSTNode> result = new ArrayList<>();
+        inorderTraversal(root, result);
+        return result;
     }
 
+    private void inorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        if (node != null) {
+            inorderTraversal(node.getLeft(), result);
+            result.add(node);
+            inorderTraversal(node.getRight(), result);
+        }
+    }
     /**
      * @return ArrayList of BSTNodes in preorder
      */
     public ArrayList<BSTNode> getPreorder() {
         // TODO: Complete preorder traversal
-        return null;
-    }
+        ArrayList<BSTNode> result = new ArrayList<>();
+        preorderTraversal(root, result);
+        return result;
 
+    }
+    private void preorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        if (node != null) {
+            result.add(node);
+            preorderTraversal(node.getLeft(), result);
+            preorderTraversal(node.getRight(), result);
+        }
+    }
     /**
      * @return ArrayList of BSTNodes in postorder
      */
     public ArrayList<BSTNode> getPostorder() {
         // TODO: Complete postorder traversal
-        return null;
+        ArrayList<BSTNode> result = new ArrayList<>();
+        postorderTraversal(root, result);
+        return result;
+    }
+    private void postorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        if (node != null) {
+            postorderTraversal(node.getLeft(), result);
+            postorderTraversal(node.getRight(), result);
+            result.add(node);
+        }
     }
 
     /**
