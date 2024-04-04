@@ -48,23 +48,30 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
+        //calls the recursive function to search for a number
         return search(root, val);
     }
     private boolean search(BSTNode node, int val)
     {
         if (node == null) {
+            //base case if no node is detected (returns not true)
             return false;
         }
         if (node.getVal() == val)
         {
+            //second base case for if the element is in tree
             return true;
         }
         else if (val < node.getVal())
         {
+            //other case for if the val is to the left of the node
+            //in that case it returns left
             return search(node.getLeft(), val);
         }
         else
         {
+            //other case for if the val is to the right of the node
+            //in that case it returns right
             return search(node.getRight(), val);
         }
     }
@@ -74,6 +81,7 @@ public class BST {
      */
     public ArrayList<BSTNode> getInorder() {
         // TODO: Complete inorder traversal
+        //blank arraylist created to hold the order from Left, root, right
         ArrayList<BSTNode> result = new ArrayList<>();
         inorderTraversal(root, result);
         return result;
