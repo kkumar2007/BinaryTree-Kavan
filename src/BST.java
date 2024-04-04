@@ -128,6 +128,24 @@ public class BST {
      */
     public void insert(int val) {
         // TODO: Complete insert
+        root = insertNode(root, val);
+    }
+    private BSTNode insertNode(BSTNode node, int val) {
+        // If the tree is empty, create a new node as the root
+        if (node == null) {
+            return new BSTNode(val);
+        }
+
+        // If the value is less than the current node's value, go left
+        if (val < node.getVal()) {
+            node.setLeft(insertNode(node.getLeft(), val));
+        }
+        // If the value is greater than the current node's value, go right
+        else if (val > node.getVal()) {
+            node.setRight(insertNode(node.getRight(), val));
+        }
+        // If the value is already in the tree, do nothing
+        return node;
     }
 
     /**
