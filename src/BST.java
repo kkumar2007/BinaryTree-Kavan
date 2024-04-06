@@ -53,6 +53,7 @@ public class BST {
     }
     private boolean search(BSTNode node, int val)
     {
+        //recursion
         if (node == null) {
             //base case if no node is detected (returns not true)
             return false;
@@ -83,14 +84,21 @@ public class BST {
         // TODO: Complete inorder traversal
         //blank arraylist created to hold the order from Left, root, right
         ArrayList<BSTNode> result = new ArrayList<>();
+        //calls function to change what is in result
         inorderTraversal(root, result);
+        //returns the created arrayList
         return result;
     }
 
     private void inorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        //base case if the node reference does not exist
+        //recursion
         if (node != null) {
+            //adds left side
             inorderTraversal(node.getLeft(), result);
+            //adds root
             result.add(node);
+            //adds right side
             inorderTraversal(node.getRight(), result);
         }
     }
@@ -99,15 +107,23 @@ public class BST {
      */
     public ArrayList<BSTNode> getPreorder() {
         // TODO: Complete preorder traversal
+        //new blank arrayList created
         ArrayList<BSTNode> result = new ArrayList<>();
+        //calls function for Arraylist
         preorderTraversal(root, result);
+        //returns arraylist
         return result;
 
     }
     private void preorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        //base case if node has no reference
+        //recursion
         if (node != null) {
+            //adds root
             result.add(node);
+            //adds left side of root
             preorderTraversal(node.getLeft(), result);
+            //adds right side of root
             preorderTraversal(node.getRight(), result);
         }
     }
@@ -116,14 +132,22 @@ public class BST {
      */
     public ArrayList<BSTNode> getPostorder() {
         // TODO: Complete postorder traversal
+        //new arraylist created
         ArrayList<BSTNode> result = new ArrayList<>();
+        //function called to fill arraylist
         postorderTraversal(root, result);
+        //returns arraylist
         return result;
     }
     private void postorderTraversal(BSTNode node, ArrayList<BSTNode> result) {
+        //base case if doesn't exist
+        //recursion
         if (node != null) {
+            //adds left side of root
             postorderTraversal(node.getLeft(), result);
+            //adds right side of root through recursion
             postorderTraversal(node.getRight(), result);
+            //adds root
             result.add(node);
         }
     }
@@ -136,20 +160,25 @@ public class BST {
      */
     public void insert(int val) {
         // TODO: Complete insert
+        //void return type so just need calls function to insert a number
         root = insertNode(root, val);
     }
     private BSTNode insertNode(BSTNode node, int val) {
         // If the tree is empty, create a new node as the root
+        //base case of no reference
         if (node == null) {
+            //returns the new node
             return new BSTNode(val);
         }
 
         // If the value is less than the current node's value, go left
         if (val < node.getVal()) {
+            //recursion to get left of root
             node.setLeft(insertNode(node.getLeft(), val));
         }
         // If the value is greater than the current node's value, go right
         else if (val > node.getVal()) {
+            //recursion to get right of root
             node.setRight(insertNode(node.getRight(), val));
         }
         // If the value is already in the tree, do nothing
